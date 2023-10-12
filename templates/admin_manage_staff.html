@@ -1,0 +1,133 @@
+{% include 'adminheader.html' %}
+<!-- ======= Hero Section ======= -->
+  <section style="background: url('/static/assets/img/about.jpg');background-size: cover;height: 100vh" id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+         <!--  <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p> -->
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="static/assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        
+<center>
+
+<form method="post">
+	{%if data['up']%}
+	<table>
+		<h2>Update Staff</h2>
+		
+		<tr>
+			<th>First Name</th>
+			<td><input type="text" name="fname" class="form-control" value="{{data['up'][0]['Staff_fname']}}"></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><input type="text" name="lname" class="form-control" value="{{data['up'][0]['Staff_lname']}}"></td>
+		</tr>
+		<tr>
+			<th>Phone Number</th>
+			<td><input type="text" name="phn" class="form-control" maxlength="10" value="{{data['up'][0]['Staff_mobile']}}"></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><input type="email" name="email" class="form-control" value="{{data['up'][0]['Staff_email']}}"></td>
+
+		</tr>
+		
+		<tr>
+			<th>City</th>
+			<td><input type="text" name="city" class="form-control" value="{{data['up'][0]['Staff_city']}}"></td>
+		</tr>
+		
+		
+		<tr>
+			<td align="center" colspan=2><input type="submit" name="update" value="UPDATE" class="btn btn-primary"></td>
+		</tr>
+		
+	</table>
+	{%else%}
+	<table>
+		<h2>Manage Staff</h2>
+		<tr>
+			<th>Username</th>
+			<td><input type="text" name="uname" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<th>First Name</th>
+			<td><input type="text" name="fname" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><input type="text" name="lname" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<th>Phone Number</th>
+			<td><input type="text" name="phn" class="form-control" maxlength="10" required=""></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><input type="email" name="email" class="form-control" required=""></td>
+		</tr>	
+		<tr>
+			<th>City</th>
+			<td><input type="text" name="city" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><input type="password" name="pass" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<td align="center" colspan=2><input type="submit" name="submit" class="btn btn-primary" value="ADD"></td>
+		</tr>
+		
+	</table>
+</form>
+</center>
+	</div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+  <center>
+	<table class="table" style="width: 960px">
+	<center>
+	<h1>View Staff</h1>
+	<tr>
+		<th>Username</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Phone Number</th>
+		<th>City</th>
+		<th>Email</th>
+		
+		<th>Status</th>
+		
+	</tr>
+	{% for r in data['view'] %}
+	<tr>
+		<td>{{r['Username']}}</td>
+		<td>{{r['Staff_fname']}}</td>
+		<td>{{r['Staff_lname']}}</td>
+		<td>{{r['Staff_mobile']}}</td>
+		<td>{{r['Staff_city']}}</td>
+		<td>{{r['Staff_email']}}</td>
+		
+		<td>{{r['Staff_status']}}</td>
+		{%if r['Staff_status']=='0'%}
+		<td><a href="?action=active&cid={{r['Username']}}" class="btn btn-success">Active</a></td>
+		{%elif r['Staff_status']=='1'%}
+		<td><a href="?action=inactive&cid={{r['Username']}}"class="btn btn-danger">In active</a></td>
+		{%endif%}
+		<td><a href="?action=update&cid={{r['Username']}}" class="btn btn-primary">Update</a></td>
+		
+	</tr>
+	{%endfor%}
+	</table>
+	{%endif%}
+</form>
+</center>
+{% include 'footer.html' %}

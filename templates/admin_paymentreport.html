@@ -1,0 +1,47 @@
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script> 
+<body onload="printDiv()">
+  <div id="div_print" >
+<center>
+  
+<h1 style="padding-top: 30px;font-size: 60px">Payment Report</h1>
+
+<!-- <h1>View Sales</h1> -->
+<table class="table" style="width: 1000px;color: black;font-style: italic;font-family: monospace;font-size: 22px" border="5">
+		<tr>
+  <th>sino</th>
+        
+          
+   
+    <th>Customer Name</th>
+    <th>Amount</th>
+    <th>Date</th>
+        <th>Status</th>
+           
+        
+        
+		</tr>
+  {% for r in data['r']%}
+</tr>
+        
+   
+         <td>{{loop.index}}</td>
+      
+    
+    <td>{{r['Customer_fname']}} {{r['Customer_lname']}}</td>
+    <td>{{r['Amount']}}</td>
+    <td>{{r['Date']}}</td>
+    <td>{{r['Status']}}</td>
+      
+     
+    </tr>
+     {% endfor %}
+	</table>
+</center>

@@ -1,0 +1,88 @@
+{% include 'customerheader.html' %}
+<!-- ======= Hero Section ======= -->
+  <section style="background: url('/static/assets/img/about.jpg');background-size: cover;height: 10vh" id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+         <!--  <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p> -->
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="static/assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+<center>
+	{% if data['view'] %}
+	<h1>INVOICE</h1>
+    <img src="/static/images/Free_Sample_By_Wix (1).jpg" width="100px" height="100px" alt=""><br>
+
+    <table style="width: max-content;">
+        <th>
+            <br><tr> 4Seasons
+            <br>
+            Address: Kakkanad, Kochi, God's Own Country
+            <br>
+            Phone: 9188083507
+            Pin: 682039
+            </tr>           
+            <tr>
+            </tr>
+        </th>
+    </table>
+	<form method="post"  >
+		<table class="table" style="width:1120px">
+			<tr>
+				
+				<th>Table</th>
+				<th>Seating</th>
+				<th>Dish - Price</th>
+				<th>Quantity</th>
+				<th>Extra-Service</th>
+
+				<th>Service Total</th>
+				<th>Menu Total</th>
+				<th>Date</th>
+				<th>Meal Time</th>
+			</tr>
+			{% for r in data['view'] %}
+			<tr>
+				
+		
+				<td>{{r['Table_num']}}</td>
+				<td>{{r['Category']}}</td>
+				<td>{{r['Menu']}} - {{r['Rate']}}</td>
+				<td>{{r['Noofquantity']}}</td>
+				<td>{{r['Extraservice_name']}}</td>
+				<td>{{r['Price']}}</td>
+				<td>{{r['Amount']}}</td>
+				<td>{{r['Date']}}</td>
+				<td>{{r['meal_time']}}</td>
+
+				<!-- <td><a class="btn  btn-success" href="makepayment?bid={{r['Booking_id']}}&sprice={{r['Price']}}&mprice={{r['Amount']}}">Make Payment</a></td> -->
+				<!-- <td><a href="view_extraservice?bid={{r['Booking_id']}}" class="btn btn-primary">View Extraservice</a></td> -->
+			</tr>
+			
+			{%endfor%}
+			<!-- <td align="right" colspan="8"><span>Grand Total :{{data['grantotal']}}</span></td> -->
+			<td align="right" colspan="10"><a href="" onclick="Print()" class="btn btn-success">Print</a></td>
+		</table>
+		{% else %}
+		<span style="color: red;">No More Items In Cart</span>
+		{% endif %}
+	</form>
+</center>
+
+{% include 'footer.html' %}
+
+
+<script>
+    function Print(){
+        print()
+    }
+</script>

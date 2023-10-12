@@ -1,0 +1,76 @@
+{%include 'staffheader.html'%}
+<!-- ======= Hero Section ======= -->
+  <section style="background: url('/static/assets/img/about.jpg');background-size: cover;height: 100vh" id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+         <!--  <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p> -->
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="static/assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+
+<center>
+	
+	<form method="post">
+		{%if data['time']%}
+		<table>
+			<h1>Update Extraservice</h1>
+			<tr>
+				<th>Extraservice</th>
+				<td><input type="text" name="extra" value="{{data['time'][0]['Extraservice_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text" name="des" value="{{data['time'][0]['description']}}"></td>
+			</tr>
+			
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="ADD"></td>
+			</tr>
+		</table>
+		{%else%}
+		<table>
+			<h1>Manage ExtraService</h1>
+			<tr>
+				<th>Extraservice</th>
+				<td><input type="text" name="extra"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><input type="text" name="des"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="submit" value="ADD"></td>
+			</tr>
+		</table>
+		</div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+		<table>
+			<h1>View ExtraService</h1>
+			<tr>
+				<th>Slno.</th>
+				<th>ExtraService</th>
+				<th>Description</th>
+				
+			</tr>
+			{%for r in data['view']%}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{r['Extraservice_name']}}</td>
+				<td>{{r['description']}}</td>
+				
+				<td><a href="?action=update&cid={{r['Extraserce_id']}}" class="btn btn-primary">Update</a></td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%endif%}
+	</form>
+</center>
+{% include 'footer.html'%}

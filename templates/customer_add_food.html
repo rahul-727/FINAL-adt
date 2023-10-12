@@ -1,0 +1,76 @@
+{%include 'customerheader.html' %}
+<!-- ======= Hero Section ======= -->
+  <section style="background: url('/static/assets/img/about.jpg');background-size: cover;height: 100vh" id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+         <!--  <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p> -->
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="static/assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+
+<center>
+	 <h5>Add Food</h5>
+    <br>
+    <div>
+        <form action="" method="post">
+        	<tr>
+			<th>Timeslot</th>
+			<td><select name="time"  class="form-control">
+				{%for r in data['timeslot']%}
+				<option value="{{r['Timeslot_id']}}">{{r['Date']}} {{r['Time']}}</option>
+				{%endfor%}
+			</select></td>
+		</tr>
+		<tr>
+			<th>Table</th>
+			<td><select name="tables"  class="form-control">
+				{%for r in data['table']%}
+				<option value="{{r['Table_id']}}">{{r['Table_num']}} </option>
+				{%endfor%}
+			</select></td>
+		</tr>
+		
+        <div>
+            <label for="">Food </label>
+            <input type="text" value="{{data['up']}}"  class="form-control" readonly name="product" id="">
+        </div>
+        <div>
+            <label for="">Rate: </label>
+            <input type="number" value="{{ data['ups'] }}"  class="form-control" readonly name="amount" id="amount">
+        </div>
+        <div>
+            <label for="">Required Quantity: </label>
+            <input required type="number" placeholder="Enter your Quantity"  class="form-control" name="quantity" id="qty">
+        </div>
+        <div>
+            <label for="">Total Amount: </label>
+            <input type="number" readonly  class="form-control"  name="total" id="total">
+        </div>
+        <div>
+            <input type="submit" name="btn" id="" class="btn btn-primary">
+        </div>
+       
+    </form>
+    </div>
+
+</center>
+ </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+<script>
+
+    var qty = document.getElementById("qty")
+    qty.addEventListener("input",()=> {
+
+        document.getElementById("total").value = document.getElementById("amount").value*document.getElementById("qty").value
+    })
+
+</script>
+{%include 'footer.html' %}

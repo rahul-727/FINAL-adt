@@ -1,0 +1,56 @@
+<body onload="printDiv()">
+    <div id="div_print" >
+        <center>
+            <!-- <link rel="stylesheet" href="static/assets/css/style-starter.css"> -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <font style="font-family:times new roman">
+                <br><br>
+            <h1 style="color: #c50404;"><b>4SEASONS<b></h1>
+                <p>
+                    Kakkanad,
+                    Kochi,
+                    God's Own Country <br> 
+                    Pincode: 682039 <br><br>
+                          <strong>Phone:</strong> +91 9188083507<br> 
+                          <strong>Email:</strong> 4seasons@gmail.com<br> 
+                        </p> 
+            <h1 style="padding-top: 30px;font-size: 60px;">BOOKING REPORT</h1><br>`
+            <!-- <h1>View Sales</h1> -->
+<table border=1 class="table table-secondary table-striped " style="width: 1100px;color: black;background:white;opacity: 0.85;">
+    <tr align="left">
+		
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Meal Time</th>
+        <th>Table</th>
+        <th>Date</th>
+        <th>Status of Booking</th>
+        {% for r in data['viewbookings'] %}
+        <tr>
+            
+            <td>{{r['Customer_fname']}}</td>
+            <td>{{r['Customer_lname']}}</td>
+            <td>{{r['meal_time']}}</td>
+            <td>{{r['Table_num']}}</td>
+
+            <td>{{r['Date']}}</td>
+            <td>{{r['Status']}}</td>
+      
+
+            </tr>
+            {% endfor %}
+
+
+<script> 
+    function printDiv() { 
+        print()
+    //   var divContents = document.getElementById("div_print").innerHTML; 
+    //   var a = window.open('', '', 'height=500, width=500'); 
+    //   a.document.write(divContents); 
+    //   a.document.close(); 
+    //   a.print(); 
+    } 
+
+  
+  </script>

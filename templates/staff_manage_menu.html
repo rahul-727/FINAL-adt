@@ -1,0 +1,95 @@
+{% include 'staffheader.html' %}
+<!-- ======= Hero Section ======= -->
+  <section style="background: url('/static/assets/img/about.jpg');background-size: cover;height: 100vh" id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+         <!--  <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p> -->
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="static/assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+
+<center>
+	
+	<form method="post">
+		{%if data['up']%}
+		<table>
+			<h1>Update Menu</h1>
+			<tr>
+				<th>Menu</th>
+				<td><input type="text" name="menu" value="{{data['up'][0]['Menu']}}"></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate" value="{{data['up'][0]['Rate']}}"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="update" value="ADD"></td>
+			</tr>
+		</table>
+		{%else%}
+		<table>
+			<h1>Manage Menu</h1>
+			<tr>
+				<th>Category</th>
+				<td><select name="cat">
+					{% for r in data['category'] %}
+					<option value="{{r['Category_id']}}">{{r['Category']}}</option>
+					{%endfor%}
+				</select></td>
+			</tr>
+			<tr>
+				<th>Menu</th>
+				<td><input type="text" name="menu"></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate"></td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td><input type="file" name="img" required=""></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="submit" value="ADD"></td>
+			</tr>
+		</table>
+		 </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+		{%endif%}
+		<table>
+			<h1>View Menu</h1>
+			<tr>
+				<th>Category</th>
+				<th>Menu</th>
+				<th>Rate</th>
+				<th>Image</th>
+				<th>Status</th>
+			</tr>
+			{%for r in data['view']%}
+			<tr>
+				<td>{{r['Category']}}</td>
+				<td>{{r['Menu']}}</td>
+				<td>{{r['Rate']}}</td>
+				<td><img src="/{{r['image']}}"></td>
+				<td>{{r['M_status']}}</td>
+				{%if r['M_status']=='1'%}
+				<td><a href="?action=inactive&cid={{r['Menu_id']}}" class="btn btn-primary">Inactive</a></td>
+				{%endif%}
+				{%if r['M_status']=='0'%}
+				<td><a href="?action=active&cid={{r['Menu_id']}}" class="btn btn-primary">Active</a></td>
+				{%endif%}
+				<td><a href="?action=update&cid={{r['Menu_id']}}" class="btn btn-primary">Update</a></td>
+			</tr>
+			{%endfor%}
+		</table>
+	</form>
+</center>
+{%include 'footer.html'%}
